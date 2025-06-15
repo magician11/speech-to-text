@@ -1,16 +1,20 @@
 {
   "name": "speech-to-text",
-  "version": "2.9.1",
+  "version": "3.0.0",
   "description": "A speech to text module.",
-  "main": "./lib/index.js",
-  "scripts": {
-    "build": "babel --delete-dir-on-start src -d lib",
-    "prepublishOnly": "npm run build"
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
   },
   "keywords": [
     "speech",
     "recognition",
-    "text"
+    "text",
+    "browser",
+    "chrome",
+    "voice",
+    "transcription"
   ],
   "author": "Andrew Golightly <support@andrewgolighly.com> (http://www.golightlyplus.com)",
   "license": "MIT",
@@ -21,10 +25,5 @@
   "bugs": {
     "url": "https://github.com/magician11/speech-to-text/issues"
   },
-  "homepage": "https://github.com/magician11/speech-to-text#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6"
-  }
+  "homepage": "https://github.com/magician11/speech-to-text#readme"
 }

@@ -10,7 +10,10 @@ A speech recognition module to convert speech into text.
 
 Here is the module being used in a React component
 
-```
+```javascript
+import SpeechToText from 'speech-to-text';
+
+class MyComponent extends Component {
   componentDidMount() {
     const onAnythingSaid = text => {
       this.setState({ interimText: text });
@@ -35,9 +38,8 @@ Here is the module being used in a React component
       this.setState({ error: error.message });
     }
   }
+}
 ```
-
-Above demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
 
 ## API
 
@@ -48,9 +50,9 @@ Above demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
 - onAnythingSaid - (optional) a callback that will be passed interim transcriptions. Fairly immediate, but less accurate than finalised text.
 - language - (optional) the language to interpret against. Default is US English, and the supported languages are listed [here](https://cloud.google.com/speech-to-text/docs/languages).
 
-The constructor will throw an error if speech recognition is not supported by the browser. [Currently only Chrome is supported](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility).
+The constructor will throw an error if speech recognition is not supported by the browser. [Browser support](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility) includes Chrome, Edge, and Safari.
 
-```
+```javascript
 if (!('webkitSpeechRecognition' in window)) {
   throw new Error("This browser doesn't support speech recognition. Try Google Chrome.");
 }
