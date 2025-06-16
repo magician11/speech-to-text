@@ -11,33 +11,46 @@ A speech recognition module to convert speech into text.
 Here is the module being used in a React component
 
 ```javascript
+import React, { useState, useEffect } from 'react';
 import SpeechToText from 'speech-to-text';
 
-class MyComponent extends Component {
-  componentDidMount() {
+function MyComponent() {
+  const [interimText, setInterimText] = useState('');
+  const [finalisedText, setFinalisedText] = useState([]);
+  const [listening, setListening] = useState(false);
+  const [error, setError] = useState(null);
+  const [listener, setListener] = useState(null);
+
+  useEffect(() => {
     const onAnythingSaid = text => {
-      this.setState({ interimText: text });
+      setInterimText(text);
     };
 
     const onEndEvent = () => {
-      if (this.state.listening) {
-        this.startListening();
+      if (listening) {
+        listener?.startListening();
       }
     };
 
     const onFinalised = text => {
-      this.setState({
-        finalisedText: [text, ...this.state.finalisedText],
-        interimText: ''
-      });
+      setFinalisedText(prev => [text, ...prev]);
+      setInterimText('');
     };
 
     try {
-      this.listener = new SpeechToText(onFinalised, onEndEvent, onAnythingSaid);
+      const speechListener = new SpeechToText(onFinalised, onEndEvent, onAnythingSaid);
+      setListener(speechListener);
     } catch (error) {
-      this.setState({ error: error.message });
+      setError(error.message);
     }
-  }
+
+    // Cleanup function
+    return () => {
+      listener?.stopListening();
+    };
+  }, [listening, listener]);
+
+  // Component JSX would go here...
 }
 ```
 

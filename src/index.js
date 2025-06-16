@@ -2,10 +2,10 @@ export default class SpeechToText {
   /*
   This module is largely inspired by this article:
   https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API
-  
+
   Arguments for the constructor:
 
-    - onFinalised - a callback that will be passed the finalised transcription from the cloud. Slow, but accuate.
+    - onFinalised - a callback that will be passed the finalised transcription from the cloud. Slow, but accurate.
     - onEndEvent - a callback that will be called when the end event is fired (speech recognition engine disconnects).
     - onAnythingSaid - a callback that will be passed interim transcriptions. Fairly immediate, but less accurate than finalised text.
     - language - the language to interpret against. Default is US English.
