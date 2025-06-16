@@ -14,7 +14,7 @@ Here is the module being used in a React component
 import React, { useState, useEffect } from 'react';
 import SpeechToText from 'speech-to-text';
 
-function MyComponent() {
+const MyComponent = () => {
   const [interimText, setInterimText] = useState('');
   const [finalisedText, setFinalisedText] = useState([]);
   const [listening, setListening] = useState(false);
